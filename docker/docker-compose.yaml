@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:12
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: bulat1
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: crud-db
+    ports:
+      - "5433:5432"
+
