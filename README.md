@@ -23,6 +23,7 @@
 ## GETTING START
 Start app - up docker:
     ```make run```
+
 Clean and stop docker:
     ```make clean```
 
