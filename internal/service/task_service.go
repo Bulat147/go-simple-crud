@@ -7,13 +7,17 @@ import (
 )
 
 type TaskRepository interface {
-	GetTaskById(id string) *domain.Task
+	GetTaskById(id string) (*domain.Task, error)
 }
 
 type TaskService struct {
 	TaskRepository TaskRepository
 }
 
-func (ts *TaskService) GetTaskById(id uuid.UUID) domain.Task {
-	return *ts.TaskRepository.GetTaskById(id.String())
+func (ts *TaskService) GetTaskById(id uuid.UUID) (domain.Task, error) {
+	task, err := ts.TaskRepository.GetTaskById(id.String())
+	if err != nil {
+		return domain.Task{}, err
+	}
+	return *task, nil
 }
