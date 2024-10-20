@@ -28,8 +28,8 @@ func RunApp() {
 	serv := &service.TaskService{TaskRepository: rep}
 
 	var taskHandler = &handler.TaskHandler{TaskService: serv}
+	taskHandler.InitRoutes()
 
-	http.HandleFunc("/task", taskHandler.GetTask)
 	log.Println("Server is running on posrt :8080")
 	http.ListenAndServe(":8080", nil)
 }

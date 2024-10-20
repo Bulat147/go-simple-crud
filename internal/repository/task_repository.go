@@ -22,3 +22,13 @@ func (tr *TaskRepository) GetTaskById(id string) (*domain.Task, error) {
 	}
 	return task, nil
 }
+
+func (tr *TaskRepository) CreateTask(task domain.Task) error {
+	query := "INSERT INTO tasks VALUES ($1, $2, $3)"
+
+	_, err := tr.DB.Exec(query, task.Id, task.Title, task.EndDate)
+	if err != nil {
+		return err
+	}
+	return nil
+}
